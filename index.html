@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no">
 <title>Taglia &amp; Gusta – Macelleria Artigianale – Giammoro, Messina</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Josefin+Sans:wght@200;300;400&display=swap" rel="stylesheet">
 <style>
@@ -141,7 +142,7 @@
   /* ECCELLENZE DELLA CASA */
   #eccellenze { background: var(--nero); }
   .eccellenze-inner { max-width:1200px; margin:0 auto; }
-  .eccellenze-grid { display:grid; grid-template-columns:1fr 1fr; gap:2px; margin-top:4rem; }
+  .eccellenze-grid { display:grid; grid-template-columns:1fr; gap:2px; margin-top:4rem; max-width:700px; }
 
   .eccellenza-card {
     position: relative; overflow: hidden;
@@ -168,7 +169,7 @@
   }
   .eccellenza-overlay {
     position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(14,10,7,0.92) 0%, rgba(14,10,7,0.3) 55%, transparent 100%);
+    background: linear-gradient(to top, rgba(14,10,7,0.97) 0%, rgba(14,10,7,0.75) 45%, rgba(14,10,7,0.35) 100%);
     z-index: 1;
   }
   .eccellenza-body { position: relative; z-index: 2; }
@@ -260,7 +261,7 @@
   .prenota-text .prenota-title em { font-style:italic; color:var(--oro); }
   .prenota-text p { font-size:0.82rem; line-height:1.75; opacity:0.65; font-weight:300; max-width:520px; }
   .prenota-actions { display:flex; flex-direction:column; gap:1rem; }
-  .prenota-wa { display:inline-flex; align-items:center; gap:1rem; padding:1rem 2.2rem; background:#25D366; color:#fff; text-decoration:none; font-family:var(--font-body); font-size:0.7rem; font-weight:400; letter-spacing:0.14em; text-transform:uppercase; transition:background 0.3s; white-space:nowrap; }
+  .prenota-wa { display:inline-flex; align-items:center; gap:1rem; padding:1rem 2.2rem; background:#25D366; color:#000; text-decoration:none; font-family:var(--font-body); font-size:0.75rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; transition:background 0.3s; white-space:nowrap; }
   .prenota-wa:hover { background:#1fbb58; }
   .prenota-note { font-size:0.62rem; opacity:0.45; text-align:center; letter-spacing:0.08em; }
 
@@ -339,8 +340,6 @@
     .storia-grid, .contatti-grid { grid-template-columns: 1fr; gap: 2.5rem; }
     .storia-visual { height: 280px; }
     .prodotti-grid { grid-template-columns: 1fr; gap: 2px; }
-    .eccellenze-grid { grid-template-columns: 1fr; }
-    .eccellenza-card { min-height: 300px; padding: 2rem; }
     .forno-details { gap: 1.5rem; }
     .forno-sep { display: none; }
     .servizi-grid { grid-template-columns: 1fr; }
@@ -352,6 +351,52 @@
     .prenota-wa { justify-content: center; }
     .divider { margin: 0 1.2rem; }
     footer { padding: 2rem 1.2rem; flex-direction: column; text-align: center; }
+
+    /* ECCELLENZE — su mobile: foto sopra, testo sotto su sfondo solido */
+    .eccellenze-grid { grid-template-columns: 1fr; gap: 16px; }
+    .eccellenza-card {
+      min-height: unset;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      position: relative;
+      overflow: hidden;
+    }
+    .eccellenza-foto {
+      position: relative !important;
+      inset: auto !important;
+      height: 220px;
+      width: 100%;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .eccellenza-foto img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.95;
+    }
+    .eccellenza-foto .foto-placeholder-ec {
+      position: absolute;
+      inset: 0;
+      height: 100%;
+    }
+    .eccellenza-overlay { display: none !important; }
+    .eccellenza-body {
+      position: relative !important;
+      z-index: 2;
+      background: #1e1108;
+      padding: 1.8rem 1.4rem;
+      border-top: 2px solid var(--oro);
+    }
+    .eccellenza-label { color: var(--oro); opacity: 1; font-size: 0.65rem; letter-spacing: 0.15em; margin-bottom: 0.5rem; }
+    .eccellenza-nome { font-size: 1.8rem; color: var(--crema); margin-bottom: 0.8rem; }
+    .eccellenza-desc { font-size: 0.9rem; color: var(--testo); opacity: 1; line-height: 1.75; }
+    .eccellenza-items { margin-top: 1rem; }
+    .eccellenza-item { font-size: 0.68rem; letter-spacing: 0.08em; opacity: 1; }
 
     /* TESTI — aumenta leggibilità */
     .hero-eyebrow { font-size: 0.72rem; letter-spacing: 0.18em; }
@@ -366,48 +411,44 @@
     .s-anni-label { font-size: 0.65rem; letter-spacing: 0.15em; opacity: 0.85; }
 
     .prodotto-nome { font-size: 1.5rem; }
-    .prodotto-desc { font-size: 0.85rem; opacity: 0.88; line-height: 1.7; }
+    .prodotto-desc { font-size: 0.88rem; opacity: 0.9; line-height: 1.7; }
     .prodotto-tag { font-size: 0.65rem; letter-spacing: 0.1em; }
-
-    .eccellenza-label { font-size: 0.65rem; letter-spacing: 0.15em; opacity: 1; }
-    .eccellenza-nome { font-size: clamp(1.6rem, 6vw, 2.2rem); }
-    .eccellenza-desc { font-size: 0.88rem; opacity: 0.92; }
-    .eccellenza-item { font-size: 0.68rem; letter-spacing: 0.08em; }
 
     .forno-badge { font-size: 0.7rem; letter-spacing: 0.15em; }
     .forno-sub { opacity: 0.85; }
     .forno-detail-val { font-size: 1.8rem; }
     .forno-detail-lab { font-size: 0.65rem; letter-spacing: 0.12em; opacity: 0.75; }
-    .forno-note { font-size: 0.88rem; opacity: 0.82; line-height: 1.8; }
+    .forno-note { font-size: 0.9rem; opacity: 0.88; line-height: 1.8; }
 
+    .quote-sec { padding: 4rem 1.5rem; }
     .quote-text { font-size: clamp(1.4rem, 5.5vw, 2rem); }
-    .quote-author { font-size: 0.7rem; letter-spacing: 0.18em; opacity: 0.75; }
+    .quote-author { font-size: 0.7rem; letter-spacing: 0.18em; opacity: 0.8; }
 
     .servizio-num { font-size: 2.5rem; min-width: 48px; }
     .servizio-nome { font-size: 1.2rem; }
-    .servizio-desc { font-size: 0.85rem; opacity: 0.82; }
+    .servizio-desc { font-size: 0.88rem; opacity: 0.85; }
     .servizio-item { padding: 1.5rem; gap: 1.2rem; }
 
     .prenota-text .prenota-title { font-size: 1.6rem; }
-    .prenota-text p { font-size: 0.88rem; opacity: 0.82; }
-    .prenota-note { font-size: 0.7rem; opacity: 0.65; }
+    .prenota-text p { font-size: 0.88rem; opacity: 0.88; }
+    .prenota-note { font-size: 0.72rem; opacity: 0.7; }
 
     .info-label { font-size: 0.65rem; letter-spacing: 0.15em; }
     .info-value { font-size: 1.05rem; }
 
     .orari-title { font-size: 1.4rem; }
-    .orario-row { font-size: 0.82rem; flex-wrap: wrap; gap: 0.3rem; }
-    .giorno { opacity: 0.82; min-width: 90px; }
-    .ore { font-size: 0.82rem; }
-    .orario-badge { font-size: 0.58rem; letter-spacing: 0.1em; }
-    .orari-box p { font-size: 0.78rem !important; opacity: 0.65 !important; }
+    .orario-row { font-size: 0.84rem; flex-direction: column; gap: 0.15rem; padding: 0.8rem 0; }
+    .giorno { opacity: 0.9; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; }
+    .ore { font-size: 0.88rem; font-weight: 400; }
+    .orario-badge { font-size: 0.6rem; letter-spacing: 0.1em; margin-left: 0; }
+    .orari-box p { font-size: 0.8rem !important; opacity: 0.72 !important; line-height: 1.7 !important; }
 
     .footer-brand { font-size: 1.4rem; }
-    .footer-sub { font-size: 0.7rem; opacity: 0.6; margin-top: 0.3rem; }
+    .footer-sub { font-size: 0.72rem; opacity: 0.65; margin-top: 0.3rem; }
 
     /* BOTTONI — più grandi e toccabili */
-    .btn-outline { padding: 1rem 2rem; font-size: 0.75rem; }
-    .wa-btn { padding: 1rem 2rem; font-size: 0.75rem; width: 100%; justify-content: center; }
+    .btn-outline { padding: 1rem 2rem; font-size: 0.78rem; }
+    .wa-btn { padding: 1rem 2rem; font-size: 0.78rem; width: 100%; justify-content: center; }
     .forno-cta { padding: 1.1rem 2.5rem; font-size: 0.78rem; width: 100%; justify-content: center; }
     .wa-float { width: 52px; height: 52px; bottom: 1.5rem; right: 1.5rem; }
   }
@@ -416,8 +457,7 @@
     .hero-title { font-size: clamp(3rem, 14vw, 5rem); }
     .section-wrap { padding: 3.5rem 1rem; }
     .prodotto-body { padding: 1.5rem; }
-    .orario-row { font-size: 0.78rem; }
-    .ore { font-size: 0.76rem; }
+    .eccellenza-foto { height: 200px; }
   }
 </style>
 </head>
@@ -460,9 +500,9 @@
     <h1 class="hero-title">Taglia &amp;<br><em>Gusta</em></h1>
     <p class="hero-sub">Carne fresca selezionata. La qualità di sempre.</p>
     <div class="hero-badges">
-      <div class="hero-badge gold">Salumi Artigianali</div>
-      <div class="hero-badge">Braciole Messinesi</div>
+      <div class="hero-badge gold">Braciole Messinesi</div>
       <div class="hero-badge">Forno Domenicale</div>
+      <div class="hero-badge">Preparati Artigianali</div>
     </div>
     <a href="#prodotti" class="btn-outline">Scopri i Nostri Tagli</a>
   </div>
@@ -490,7 +530,7 @@
       <div class="section-tag">La Nostra Storia</div>
       <h2 class="section-title" style="margin-bottom:2rem">Una <em>passione</em><br>di famiglia</h2>
       <p>Da oltre quarant'anni, la nostra macelleria è un punto di riferimento per le famiglie di Giammoro e dei paesi vicini. Ogni giorno selezioniamo personalmente i migliori tagli, con la cura e l'attenzione che solo chi ama questo mestiere può garantire.</p>
-      <p>Un <strong>lavoro di squadra</strong>: lui seleziona, prepara i salumi artigianali e affina il mestiere con anni di esperienza; lei porta in tavola la tradizione con le sue braciole messinesi e i preparati fatti a mano. Qui non trovi la grande distribuzione — trovi il macellaio che conosce il tuo nome.</p>
+      <p>Un <strong>lavoro di squadra</strong>: lui seleziona i migliori tagli e affina il mestiere con anni di esperienza; lei porta in tavola la tradizione con le sue braciole messinesi e i preparati fatti a mano ogni mattina. Qui non trovi la grande distribuzione — trovi il macellaio che conosce il tuo nome.</p>
     </div>
   </div>
 </div>
@@ -609,7 +649,7 @@
           <div class="eccellenza-label">La Tradizione Messinese</div>
           <div class="eccellenza-nome">Braciole<br><em>Messinesi</em></div>
           <div class="eccellenza-desc">
-            Preparate a mano ogni mattina secondo la ricetta tradizionale messinese: carne avvolta con pangrattato, aglio, prezzemolo, formaggio e uova sode. Il simbolo della cucina siciliana povera diventata grande.
+            Preparate a mano ogni mattina secondo la ricetta tradizionale messinese: carne avvolta con pangrattato, aglio, prezzemolo e formaggio. Il simbolo della cucina siciliana povera diventata grande.
           </div>
           <div class="eccellenza-items">
             <span class="eccellenza-item">Ricetta Tradizionale</span>
@@ -619,28 +659,6 @@
         </div>
       </div>
 
-      <!-- SALUMI ARTIGIANALI -->
-      <div class="eccellenza-card reveal" style="transition-delay:0.15s">
-        <div class="eccellenza-foto">
-          <img src="img/salumi.jpg" alt="Salumi Artigianali"
-               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-          <div class="foto-placeholder-ec" style="display:none">🥓</div>
-        </div>
-        <div class="eccellenza-overlay"></div>
-        <div class="eccellenza-body">
-          <div class="eccellenza-label">Produzione Propria</div>
-          <div class="eccellenza-nome">Salumi<br><em>Artigianali</em></div>
-          <div class="eccellenza-desc">
-            Salami lavorati direttamente in macelleria con carni selezionate: suino, bovino, misto — e la rarità assoluta, il <strong>salame di cinghiale</strong>. Stagionati con cura, senza compromessi sulla qualità.
-          </div>
-          <div class="eccellenza-items">
-            <span class="eccellenza-item">Salame Suino</span>
-            <span class="eccellenza-item">Salame Bovino</span>
-            <span class="eccellenza-item">Salame Misto</span>
-            <span class="eccellenza-item" style="border-color:var(--oro);color:var(--oro)">✦ Cinghiale</span>
-          </div>
-        </div>
-      </div>
 
     </div>
   </div>
@@ -784,13 +802,6 @@
       <div class="servizio-item reveal" style="transition-delay:0.4s">
         <div class="servizio-num">05</div>
         <div>
-          <div class="servizio-nome">Salumi su Ordinazione</div>
-          <div class="servizio-desc">I salami artigianali vengono prodotti in quantità limitata. Contattaci per disponibilità e prenotazioni, specialmente per il salame di cinghiale.</div>
-        </div>
-      </div>
-      <div class="servizio-item reveal" style="transition-delay:0.5s">
-        <div class="servizio-num">06</div>
-        <div>
           <div class="servizio-nome">Carne al Forno Domenicale</div>
           <div class="servizio-desc">Da maggio ad agosto ogni domenica è disponibile carne preparata per il forno. Prenota il sabato e il giorno dopo trovi tutto pronto.</div>
         </div>
@@ -834,7 +845,7 @@
           <div class="info-icon">📞</div>
           <div>
             <div class="info-label">Telefono</div>
-            <div class="info-value">345 871 9069</div>
+            <div class="info-value"><a href="tel:+393458719069" style="color:var(--crema);text-decoration:none;font-family:var(--font-display);font-size:1.15rem;">345 871 9069</a></div>
           </div>
         </div>
         <div class="info-item reveal" style="transition-delay:0.2s">

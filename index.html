@@ -1,2 +1,392 @@
 <!DOCTYPE html>
-<html>test</html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taglia &amp; Gusta – Macelleria Artigianale – Giammoro, Messina</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Josefin+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --nero: #0e0a07;
+    --carbone: #1c1410;
+    --marrone: #2e1f12;
+    --crema: #f2e4c4;
+    --oro: #c8913a;
+    --rosso: #7a1c1c;
+    --testo: #d4c4a0;
+    --font-display: 'Cormorant Garant', serif;
+    --font-body: 'Josefin Sans', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--nero); color: var(--testo); font-family: var(--font-body); overflow-x: hidden; }
+
+  /* NAVBAR */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 4rem;
+    background: linear-gradient(to bottom, rgba(14,10,7,0.97), transparent);
+    border-bottom: 1px solid rgba(200,145,58,0.12);
+  }
+  .nav-logo { font-family: var(--font-display); font-size: 1.4rem; font-weight: 600; color: var(--oro); letter-spacing: 0.05em; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-family: var(--font-body); font-size: 0.68rem; font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; color: var(--crema); text-decoration: none; opacity: 0.8; transition: opacity 0.3s, color 0.3s; }
+  .nav-links a:hover { opacity: 1; color: var(--oro); }
+
+  /* HERO */
+  #hero { position: relative; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; overflow: hidden; }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(122,28,28,0.28) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 30%, rgba(200,145,58,0.14) 0%, transparent 50%),
+                linear-gradient(180deg, #0e0a07 0%, #1c1410 50%, #0e0a07 100%);
+  }
+  .hero-ring { position: absolute; inset: 0; }
+  .hero-ring::before, .hero-ring::after {
+    content: ''; position: absolute; border: 1px solid rgba(200,145,58,0.1); border-radius: 50%;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+  }
+  .hero-ring::before { width: min(70vw, 700px); height: min(70vw, 700px); }
+  .hero-ring::after  { width: min(90vw, 900px); height: min(90vw, 900px); }
+  .hero-content { position: relative; z-index: 2; animation: fadeUp 1.4s ease forwards; }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+  .hero-eyebrow {
+    font-family: var(--font-body); font-size: 0.64rem; font-weight: 300;
+    letter-spacing: 0.35em; text-transform: uppercase; color: var(--oro);
+    margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem; justify-content: center;
+  }
+  .hero-eyebrow::before, .hero-eyebrow::after { content: ''; display: block; width: 40px; height: 1px; background: var(--oro); opacity: 0.55; }
+  .hero-title { font-family: var(--font-display); font-size: clamp(3.5rem, 9vw, 8rem); font-weight: 300; color: var(--crema); line-height: 0.95; letter-spacing: -0.01em; margin-bottom: 0.3em; }
+  .hero-title em { font-style: italic; color: var(--oro); }
+  .hero-sub { font-family: var(--font-display); font-size: clamp(1rem, 2.5vw, 1.6rem); font-weight: 300; font-style: italic; color: var(--testo); opacity: 0.7; margin-bottom: 2.5rem; }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 0.8rem;
+    padding: 0.9rem 2.5rem; border: 1px solid var(--oro);
+    color: var(--oro); font-family: var(--font-body); font-size: 0.68rem; font-weight: 400;
+    letter-spacing: 0.22em; text-transform: uppercase; text-decoration: none;
+    transition: all 0.4s ease; position: relative; overflow: hidden;
+  }
+  .btn-outline::before { content:''; position:absolute; inset:0; background:var(--oro); transform:translateX(-100%); transition:transform 0.4s ease; z-index:-1; }
+  .btn-outline:hover { color: var(--nero); }
+  .btn-outline:hover::before { transform:translateX(0); }
+  .scroll-cue { position:absolute; bottom:2.5rem; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:0.5rem; opacity:0.4; animation:blink 2s ease infinite; }
+  .scroll-cue span { font-size:0.58rem; letter-spacing:0.22em; text-transform:uppercase; }
+  .scroll-cue-line { width:1px; height:40px; background:linear-gradient(to bottom, var(--oro), transparent); }
+  @keyframes blink { 0%,100%{opacity:.4} 50%{opacity:.8} }
+
+  /* SECTIONS COMMON */
+  .section-wrap { padding: 7rem 4rem; }
+  .section-tag { font-family:var(--font-body); font-size:0.6rem; font-weight:300; letter-spacing:0.32em; text-transform:uppercase; color:var(--oro); margin-bottom:0.8rem; display:flex; align-items:center; gap:0.8rem; }
+  .section-tag::before { content:''; display:block; width:28px; height:1px; background:var(--oro); }
+  .section-title { font-family:var(--font-display); font-size:clamp(2.2rem,5vw,4rem); font-weight:300; color:var(--crema); line-height:1.1; }
+  .section-title em { font-style:italic; color:var(--oro); }
+
+  /* STORIA */
+  .storia-grid { display:grid; grid-template-columns:1fr 1fr; gap:6rem; align-items:center; max-width:1200px; margin:0 auto; }
+  .storia-visual { position:relative; height:480px; }
+  .s-box-main { position:absolute; top:0; left:0; width:75%; height:85%; background:linear-gradient(135deg, var(--marrone), var(--carbone)); border:1px solid rgba(200,145,58,0.2); display:flex; align-items:center; justify-content:center; font-size:7rem; color:rgba(200,145,58,0.08); }
+  .s-box-accent { position:absolute; bottom:0; right:0; width:50%; height:45%; background:var(--rosso); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.3rem; }
+  .s-anni { font-family:var(--font-display); font-size:3.5rem; font-weight:700; color:var(--crema); line-height:1; }
+  .s-anni-label { font-size:0.58rem; letter-spacing:0.25em; text-transform:uppercase; color:rgba(242,228,196,0.65); }
+  .storia-text p { font-size:0.88rem; line-height:1.9; color:var(--testo); opacity:0.82; margin-bottom:1.5rem; font-weight:300; letter-spacing:0.03em; }
+  .storia-text p strong { color:var(--crema); font-weight:400; }
+
+  /* DIVIDER */
+  .divider { height:1px; background:linear-gradient(to right, transparent, var(--oro), transparent); opacity:0.2; margin:0 4rem; }
+
+  /* PRODOTTI */
+  #prodotti { background:var(--carbone); }
+  .prodotti-inner { max-width:1200px; margin:0 auto; }
+  .prodotti-header { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:4rem; flex-wrap:wrap; gap:2rem; }
+  .prodotti-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5px; }
+  .prodotto-card { background:var(--marrone); padding:3rem 2.5rem; border:1px solid rgba(200,145,58,0.07); transition:all 0.4s ease; position:relative; overflow:hidden; }
+  .prodotto-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; background:var(--oro); transform:scaleX(0); transition:transform 0.4s ease; transform-origin:left; }
+  .prodotto-card:hover { background:#341a0c; transform:translateY(-4px); }
+  .prodotto-card:hover::after { transform:scaleX(1); }
+  .prodotto-icon { font-size:2.5rem; margin-bottom:1.5rem; display:block; }
+  .prodotto-nome { font-family:var(--font-display); font-size:1.6rem; font-weight:600; color:var(--crema); margin-bottom:0.7rem; }
+  .prodotto-desc { font-size:0.78rem; line-height:1.75; color:var(--testo); opacity:0.7; font-weight:300; }
+
+  /* QUOTE */
+  .quote-sec { text-align:center; padding:6rem 4rem; background:var(--rosso); position:relative; overflow:hidden; }
+  .quote-sec::before { content:'"'; position:absolute; top:-3rem; left:50%; transform:translateX(-50%); font-family:var(--font-display); font-size:22rem; color:rgba(255,255,255,0.035); line-height:1; pointer-events:none; }
+  .quote-text { font-family:var(--font-display); font-size:clamp(1.5rem,3.5vw,2.8rem); font-weight:300; font-style:italic; color:var(--crema); max-width:800px; margin:0 auto 1.5rem; line-height:1.4; position:relative; z-index:1; }
+  .quote-author { font-size:0.63rem; letter-spacing:0.3em; text-transform:uppercase; color:rgba(242,228,196,0.55); }
+
+  /* SERVIZI */
+  .servizi-inner { max-width:1200px; margin:0 auto; }
+  .servizi-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:2rem; margin-top:4rem; }
+  .servizio-item { display:flex; gap:2rem; align-items:flex-start; padding:2.5rem; border:1px solid rgba(200,145,58,0.1); transition:border-color 0.3s; }
+  .servizio-item:hover { border-color:rgba(200,145,58,0.38); }
+  .servizio-num { font-family:var(--font-display); font-size:3.5rem; font-weight:700; color:rgba(200,145,58,0.13); line-height:1; min-width:60px; }
+  .servizio-nome { font-family:var(--font-display); font-size:1.3rem; font-weight:600; color:var(--crema); margin-bottom:0.5rem; }
+  .servizio-desc { font-size:0.78rem; line-height:1.75; opacity:0.65; font-weight:300; }
+
+  /* CONTATTI */
+  .contatti-grid { display:grid; grid-template-columns:1fr 1fr; gap:6rem; align-items:start; max-width:1200px; margin:0 auto; }
+  .contatti-info { display:flex; flex-direction:column; gap:2.5rem; margin-top:3rem; }
+  .info-item { display:flex; gap:1.5rem; align-items:flex-start; }
+  .info-icon { width:42px; height:42px; border:1px solid rgba(200,145,58,0.28); display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0; margin-top:2px; }
+  .info-label { font-size:0.58rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--oro); margin-bottom:0.35rem; }
+  .info-value { font-family:var(--font-display); font-size:1.15rem; color:var(--crema); line-height:1.4; }
+  .wa-btn { display:inline-flex; align-items:center; gap:1rem; padding:1.1rem 2.5rem; background:#1a6e37; color:white; text-decoration:none; font-family:var(--font-body); font-size:0.7rem; font-weight:400; letter-spacing:0.14em; text-transform:uppercase; transition:background 0.3s; margin-top:0.5rem; align-self:flex-start; }
+  .wa-btn:hover { background:#1f8a43; }
+  .orari-box { border:1px solid rgba(200,145,58,0.18); padding:2.5rem; }
+  .orari-title { font-family:var(--font-display); font-size:1.6rem; color:var(--crema); margin-bottom:1.5rem; font-weight:300; font-style:italic; }
+  .orario-row { display:flex; justify-content:space-between; padding:0.72rem 0; border-bottom:1px solid rgba(200,145,58,0.07); font-size:0.78rem; font-weight:300; letter-spacing:0.04em; }
+  .orario-row:last-child { border-bottom:none; }
+  .giorno { color:var(--testo); opacity:0.65; }
+  .ore { color:var(--oro-ch, #e8b96a); }
+  .chiuso { color:#c25050; }
+
+  /* FOOTER */
+  footer { background:var(--nero); border-top:1px solid rgba(200,145,58,0.1); padding:3rem 4rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+  .footer-brand { font-family:var(--font-display); font-size:1.5rem; color:var(--oro); font-weight:600; }
+  .footer-sub { font-size:0.62rem; color:var(--testo); opacity:0.38; letter-spacing:0.1em; margin-top:0.2rem; }
+
+  /* FLOATING WA */
+  .wa-float { position:fixed; bottom:2rem; right:2rem; width:56px; height:56px; background:#25D366; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.5rem; z-index:200; box-shadow:0 4px 20px rgba(37,211,102,0.35); text-decoration:none; transition:transform 0.3s, box-shadow 0.3s; animation:waPulse 2.5s ease infinite; }
+  .wa-float:hover { transform:scale(1.1); }
+  @keyframes waPulse { 0%,100%{box-shadow:0 4px 20px rgba(37,211,102,0.35)} 50%{box-shadow:0 4px 35px rgba(37,211,102,0.65)} }
+
+  /* SCROLL REVEAL */
+  .reveal { opacity:0; transform:translateY(22px); transition:opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display:none; }
+    .section-wrap { padding: 5rem 1.5rem; }
+    .storia-grid, .contatti-grid { grid-template-columns:1fr; gap:3rem; }
+    .storia-visual { height: 300px; }
+    .prodotti-grid { grid-template-columns:1fr; gap:1.5px; }
+    .servizi-grid { grid-template-columns:1fr; }
+    .divider { margin:0 1.5rem; }
+    footer { padding:2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Taglia &amp; Gusta</div>
+  <ul class="nav-links">
+    <li><a href="#storia">Chi Siamo</a></li>
+    <li><a href="#prodotti">I Nostri Tagli</a></li>
+    <li><a href="#servizi">Servizi</a></li>
+    <li><a href="#contatti">Contatti</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-ring"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Giammoro · Messina · Sicilia</div>
+    <h1 class="hero-title">Taglia &amp;<br><em>Gusta</em></h1>
+    <p class="hero-sub">Carne fresca selezionata. La qualità di sempre.</p>
+    <a href="#prodotti" class="btn-outline">Scopri i Nostri Tagli</a>
+  </div>
+  <div class="scroll-cue">
+    <span>Scorri</span>
+    <div class="scroll-cue-line"></div>
+  </div>
+</section>
+
+<!-- STORIA -->
+<div class="section-wrap" id="storia">
+  <div class="storia-grid">
+    <div class="storia-visual reveal">
+      <div class="s-box-main">🥩</div>
+      <div class="s-box-accent">
+        <div class="s-anni">40+</div>
+        <div class="s-anni-label">Anni di Esperienza</div>
+      </div>
+    </div>
+    <div class="storia-text reveal" style="transition-delay:0.2s">
+      <div class="section-tag">La Nostra Storia</div>
+      <h2 class="section-title" style="margin-bottom:2rem">Una <em>passione</em><br>di famiglia</h2>
+      <p>Da oltre quarant'anni, la nostra macelleria è un punto di riferimento per le famiglie di Giammoro e dei paesi vicini. Ogni giorno selezioniamo personalmente i migliori tagli, con la cura e l'attenzione che solo chi ama questo mestiere può garantire.</p>
+      <p>Crediamo nella <strong>qualità autentica</strong>: carne fresca, fornitori locali fidati, e la competenza artigianale tramandata di generazione in generazione. Qui non trovi la grande distribuzione — trovi il macellaio che conosce il tuo nome.</p>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- PRODOTTI -->
+<section id="prodotti" class="section-wrap">
+  <div class="prodotti-inner">
+    <div class="prodotti-header reveal">
+      <div>
+        <div class="section-tag">Qualità Garantita</div>
+        <h2 class="section-title">I Nostri <em>Tagli</em></h2>
+      </div>
+      <p style="max-width:340px;font-size:0.82rem;line-height:1.8;opacity:0.6;font-weight:300;">Ogni taglio è selezionato con cura. Chiedi sempre al macellaio — saprà consigliarti il pezzo giusto per ogni ricetta.</p>
+    </div>
+    <div class="prodotti-grid">
+      <div class="prodotto-card reveal">
+        <span class="prodotto-icon">🐄</span>
+        <div class="prodotto-nome">Carne Bovina</div>
+        <div class="prodotto-desc">Costata, filetto, fesa, macinato fresco, braciole. Tagli su richiesta e preparazioni personalizzate per ogni esigenza.</div>
+      </div>
+      <div class="prodotto-card reveal" style="transition-delay:0.1s">
+        <span class="prodotto-icon">🐖</span>
+        <div class="prodotto-nome">Carne Suina</div>
+        <div class="prodotto-desc">Lonza, pancetta, salsicce artigianali, braciole di maiale. La tradizione siciliana nel rispetto della qualità.</div>
+      </div>
+      <div class="prodotto-card reveal" style="transition-delay:0.2s">
+        <span class="prodotto-icon">🐑</span>
+        <div class="prodotto-nome">Agnello & Capretto</div>
+        <div class="prodotto-desc">Selezionato per le grandi occasioni. Disponibile su prenotazione, soprattutto per Pasqua e le festività.</div>
+      </div>
+      <div class="prodotto-card reveal" style="transition-delay:0.3s">
+        <span class="prodotto-icon">🍗</span>
+        <div class="prodotto-nome">Pollame Fresco</div>
+        <div class="prodotto-desc">Pollo, tacchino e coniglio freschi. Tagliati al momento secondo le tue preferenze di cottura.</div>
+      </div>
+      <div class="prodotto-card reveal" style="transition-delay:0.4s">
+        <span class="prodotto-icon">🌿</span>
+        <div class="prodotto-nome">Preparati Pronti</div>
+        <div class="prodotto-desc">Spiedini, hamburger artigianali, involtini e braciole già preparate. Perfetti per grigliata o padella.</div>
+      </div>
+      <div class="prodotto-card reveal" style="transition-delay:0.5s">
+        <span class="prodotto-icon">🎁</span>
+        <div class="prodotto-nome">Box Grigliata</div>
+        <div class="prodotto-desc">Vassoi misti per grigliate in famiglia o con amici. Prenotabili via WhatsApp con un giorno di anticipo.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<div class="quote-sec reveal">
+  <p class="quote-text">La carne buona non ha bisogno di presentazioni. Parla da sola.</p>
+  <div class="quote-author">Taglia &amp; Gusta · Giammoro, Messina</div>
+</div>
+
+<!-- SERVIZI -->
+<div id="servizi" class="section-wrap">
+  <div class="servizi-inner">
+    <div class="reveal">
+      <div class="section-tag">Cosa Offriamo</div>
+      <h2 class="section-title">I Nostri <em>Servizi</em></h2>
+    </div>
+    <div class="servizi-grid">
+      <div class="servizio-item reveal">
+        <div class="servizio-num">01</div>
+        <div>
+          <div class="servizio-nome">Taglio su Misura</div>
+          <div class="servizio-desc">Vuoi uno spessore preciso? Una porzione specifica? Basta chiedere. Il macellaio prepara ogni taglio come preferisci.</div>
+        </div>
+      </div>
+      <div class="servizio-item reveal" style="transition-delay:0.1s">
+        <div class="servizio-num">02</div>
+        <div>
+          <div class="servizio-nome">Prenotazione via WhatsApp</div>
+          <div class="servizio-desc">Prenota il tuo ordine il giorno prima. Eviti la fila e trovi tutto pronto quando arrivi in negozio.</div>
+        </div>
+      </div>
+      <div class="servizio-item reveal" style="transition-delay:0.2s">
+        <div class="servizio-num">03</div>
+        <div>
+          <div class="servizio-nome">Consigli di Cottura</div>
+          <div class="servizio-desc">Non sai come cucinare quel taglio? Il macellaio ti spiega la tecnica giusta. Ogni acquisto diventa anche una lezione.</div>
+        </div>
+      </div>
+      <div class="servizio-item reveal" style="transition-delay:0.3s">
+        <div class="servizio-num">04</div>
+        <div>
+          <div class="servizio-nome">Vassoi per Occasioni</div>
+          <div class="servizio-desc">Grigliate, feste, eventi. Prepariamo vassoi misti su ordinazione, calibrati per il numero di persone che hai.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CONTATTI -->
+<div id="contatti" class="section-wrap">
+  <div class="contatti-grid">
+    <div>
+      <div class="section-tag reveal">Dove Siamo</div>
+      <h2 class="section-title reveal" style="margin-bottom:3rem">Vieni a <em>trovarci</em></h2>
+      <div class="contatti-info">
+        <div class="info-item reveal">
+          <div class="info-icon">📍</div>
+          <div>
+            <div class="info-label">Indirizzo</div>
+            <div class="info-value">Via Nazionale 367<br>Giammoro, 98042 ME</div>
+          </div>
+        </div>
+        <div class="info-item reveal" style="transition-delay:0.1s">
+          <div class="info-icon">📞</div>
+          <div>
+            <div class="info-label">Telefono</div>
+            <div class="info-value">345 871 9069</div>
+          </div>
+        </div>
+        <div class="info-item reveal" style="transition-delay:0.2s">
+          <div class="info-icon">💬</div>
+          <div>
+            <div class="info-label">WhatsApp</div>
+            <div class="info-value">Ordini e prenotazioni dirette</div>
+          </div>
+        </div>
+        <a href="https://wa.me/393458719069" class="wa-btn reveal" style="transition-delay:0.3s">
+          💬 &nbsp;Scrivici su WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="orari-box reveal" style="transition-delay:0.2s">
+      <div class="orari-title">Orari di Apertura</div>
+      <div class="orario-row"><span class="giorno">Lunedì</span><span class="ore">08:00 – 13:00 / 16:30 – 20:00</span></div>
+      <div class="orario-row"><span class="giorno">Martedì</span><span class="ore">08:00 – 13:00 / 16:30 – 20:00</span></div>
+      <div class="orario-row"><span class="giorno">Mercoledì</span><span class="ore">08:00 – 13:00 / 16:30 – 20:00</span></div>
+      <div class="orario-row"><span class="giorno">Giovedì</span><span class="ore">08:00 – 13:00 / 16:30 – 20:00</span></div>
+      <div class="orario-row"><span class="giorno">Venerdì</span><span class="ore">08:00 – 13:00 / 16:30 – 20:00</span></div>
+      <div class="orario-row"><span class="giorno">Sabato</span><span class="ore">08:00 – 13:30</span></div>
+      <div class="orario-row"><span class="giorno">Domenica</span><span class="chiuso">Chiuso</span></div>
+      <p style="margin-top:2rem;font-size:0.7rem;opacity:0.45;font-weight:300;font-style:italic;line-height:1.6;">
+        * Gli orari possono variare durante le festività. Per aggiornamenti seguici su WhatsApp o Facebook.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-brand">Taglia &amp; Gusta</div>
+    <div class="footer-sub">Giammoro · Provincia di Messina · Sicilia</div>
+  </div>
+  <div style="text-align:right">
+    <div class="footer-sub">© 2025 Taglia &amp; Gusta — Titolare: Giaco Maurizio</div>
+    <div class="footer-sub">P.IVA [Da inserire]</div>
+  </div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/393458719069" class="wa-float" title="Scrivici su WhatsApp">💬</a>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => obs.observe(el));
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) t.scrollIntoView({ behavior:'smooth' });
+    });
+  });
+</script>
+</body>
+</html>

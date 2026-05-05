@@ -31,7 +31,7 @@
     background: linear-gradient(to bottom, rgba(14,10,7,0.97), transparent);
     border-bottom: 1px solid rgba(200,145,58,0.12);
   }
-  .nav-logo { font-family: var(--font-display); font-size: 1.4rem; font-weight: 600; color: var(--oro); letter-spacing: 0.05em; }
+  .nav-logo-img { height: 38px; width: auto; filter: drop-shadow(0 1px 4px rgba(0,0,0,0.4)); }
   .nav-links { display: flex; gap: 2.5rem; list-style: none; }
   .nav-links a { font-family: var(--font-body); font-size: 0.66rem; font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; color: var(--crema); text-decoration: none; opacity: 0.8; transition: opacity 0.3s, color 0.3s; }
   .nav-links a:hover { opacity: 1; color: var(--oro); }
@@ -71,6 +71,12 @@
   .hero-eyebrow::before, .hero-eyebrow::after { content: ''; display: block; width: 40px; height: 1px; background: var(--oro); opacity: 0.55; }
   .hero-title { font-family: var(--font-display); font-size: clamp(3.5rem, 9vw, 8rem); font-weight: 300; color: var(--crema); line-height: 0.95; letter-spacing: -0.01em; margin-bottom: 0.3em; }
   .hero-title em { font-style: italic; color: var(--oro); }
+  .hero-logo {
+    width: min(480px, 85vw);
+    height: auto;
+    margin-bottom: 1.2rem;
+    filter: drop-shadow(0 4px 24px rgba(0,0,0,0.5));
+  }
   .hero-sub { font-family: var(--font-display); font-size: clamp(1rem, 2.5vw, 1.6rem); font-weight: 300; font-style: italic; color: var(--testo); opacity: 0.7; margin-bottom: 2.5rem; }
   .hero-badges { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2.5rem; }
   .hero-badge {
@@ -464,7 +470,7 @@
 <body>
 
 <nav>
-  <div class="nav-logo">Taglia &amp; Gusta</div>
+  <img src="img/logo.png" alt="Taglia &amp; Gusta" class="nav-logo-img">
   <ul class="nav-links">
     <li><a href="#storia">Chi Siamo</a></li>
     <li><a href="#prodotti">I Tagli</a></li>
@@ -497,7 +503,7 @@
   <div class="hero-ring"></div>
   <div class="hero-content">
     <div class="hero-eyebrow">Giammoro · Messina · Sicilia</div>
-    <h1 class="hero-title">Taglia &amp;<br><em>Gusta</em></h1>
+    <img src="img/logo.png" alt="Macelleria Taglia &amp; Gusta" class="hero-logo">
     <p class="hero-sub">Carne fresca selezionata. La qualità di sempre.</p>
     <div class="hero-badges">
       <div class="hero-badge gold">Braciole Messinesi</div>
